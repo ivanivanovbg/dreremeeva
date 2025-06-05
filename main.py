@@ -43,12 +43,12 @@ def get_schedule():
     dbcursor = dbconn.cursor()
     month = datetime.now().month
     year = datetime.now().year
-    month_query = "SELECT datetime(`from`),datetime(`to`) FROM workdays WHERE `month`=? AND `year`=?"
+    month_query = "SELECT id,datetime(`from`),datetime(`to`) FROM workdays WHERE `month`=? AND `year`=?"
     query_args = (month,year)
     month_res = dbcursor.execute(month_query,query_args)
     month_schedule = Schedule(workdays=[])
     for res_item in month_res.fetchall():
-        month_schedule.workdays.append(WorkDay(wday_from=res_item[0],wday_to=res_item[1]))
+        month_schedule.workdays.append(WorkDay(id=res_item[0],wday_from=res_item[1],wday_to=res_item[2]))
     dbconn.close()
     return month_schedule
 
