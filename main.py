@@ -5,6 +5,7 @@ from fastapi import FastAPI,Form
 from datamodels import Schedule,WorkDay
 from datetime import datetime,timedelta,timezone
 import jwt
+from fastapi.middleware.cors import CORSMiddleware
 from hashlib import sha256
 from pydantic import BaseModel
 import uvicorn
@@ -12,6 +13,20 @@ import uvicorn
 app = FastAPI()
 TOKEN_KEY = "81c9121387b311bb5b4b31f4da9646f0c119f2b5c1fd2c53d244b60ec3715133"
 TOKEN_ALG = "HS256"
+
+origins = [
+    "http://www.dr-eremeeva.com",
+    "https://www.dr-eremeeva.com",
+    # or "*" to allow all origins (less secure)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # or ["*"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Token(BaseModel):
     token:str
