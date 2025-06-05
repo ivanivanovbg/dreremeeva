@@ -17,6 +17,8 @@ TOKEN_ALG = "HS256"
 origins = [
     "http://www.dr-eremeeva.com",
     "https://www.dr-eremeeva.com",
+    "http://dr-eremeeva.com",
+    "https://dr-eremeeva.com"
     # or "*" to allow all origins (less secure)
 ]
 
