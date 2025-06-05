@@ -37,17 +37,6 @@ class TokenResponse(BaseModel):
 def get_db_conn()->sqlite3.Connection:
     return sqlite3.connect("eremeeva.db")
 
-from fastapi.responses import JSONResponse
-
-@app.get("/test-cors")
-def test_cors():
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "*",
-    }
-    return JSONResponse(content={"msg": "manual cors"}, headers=headers)
-
 @app.get('/schedule/')
 def get_schedule():
     dbconn = get_db_conn()
