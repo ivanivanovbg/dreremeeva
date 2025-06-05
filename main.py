@@ -37,7 +37,7 @@ def get_schedule():
     dbconn.close()
     return month_schedule
 
-@app.get('/schedule/month/{month}/year/{year}')
+@app.get('/schedule/month/{month}/year/{year}/')
 def get_schedule_month(month:int,year:int):
     dbconn = get_db_conn()
     dbcursor = dbconn.cursor()
